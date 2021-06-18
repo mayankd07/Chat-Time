@@ -1,4 +1,4 @@
-const socket = io('https://chat-time-mayank.herokuapp.com/:8000');
+const socket = io('https://chat-time-mayank.herokuapp.com');
 
 // Get DOM elements in respective Js variables
 const form = document.getElementById('send-container');
