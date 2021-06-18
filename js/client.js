@@ -1,4 +1,4 @@
-const socket = io('https://chat-time-mayank.herokuapp.com/:8000');
+const socket = io('http://localhost:8000');
 
 // Get DOM elements in respective Js variables
 const form = document.getElementById('send-container');
@@ -9,7 +9,7 @@ const messageContainer = document.querySelector(".container");
 var audio = new Audio('/images/ding.mp3');
 // var audio1= new Audio('/images/join.mp3');
 
-// Function which will append event info to the contaner
+// Function which will append event info to the container
 const append = (message, position)=>{
     const messageElement = document.createElement('div');
     messageElement.innerText = message;
