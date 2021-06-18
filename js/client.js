@@ -1,4 +1,4 @@
-const socket = io('http://localhost:8000');
+const socket = io('https://chat-time-mayank.herokuapp.com/8000');
 
 // Get DOM elements in respective Js variables
 const form = document.getElementById('send-container');
@@ -7,7 +7,7 @@ const messageContainer = document.querySelector(".container");
 
 // Audio that will play on receiving messages
 var audio = new Audio('/images/ding.mp3');
-var audio1= new Audio('/images/join.mp3');
+
 
 // Function which will append event info to the contaner
 const append = (message, position)=>{
@@ -29,7 +29,7 @@ socket.emit('new-user-joined', name);
 // If a new user joins, receive his/her name from the server
 socket.on('user-joined', name =>{
     append(`${name} joined the chat`, 'right');
-    audio1.play();
+    audio.play();
 })
 
 // If server sends a message, receive it
