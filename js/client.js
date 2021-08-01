@@ -1,15 +1,14 @@
 const socket = io('http://localhost:8000');
 
-// Get DOM elements in respective Js variables
+
 const form = document.getElementById('send-container');
 const messageInput = document.getElementById('messageInp');
 const messageContainer = document.querySelector(".container");
+const sendButton = document.querySelector('.btn');
 
-// Audio that will play on receiving messages
 var audio = new Audio('/images/ding.mp3');
-var audio1= new Audio('/images/join.mp3');
 
-// Function which will append event info to the contaner
+
 const append = (message, position)=>{
     const messageElement = document.createElement('div');
     messageElement.innerText = message;
@@ -21,28 +20,27 @@ const append = (message, position)=>{
     }
 }
 
-
-// Ask new user for his/her name and let the server know
-const name = prompt("Enter your name to join");
+while(name === ""){
+    name = prompt("Enter your name to join")
+}
 socket.emit('new-user-joined', name);
 
-// If a new user joins, receive his/her name from the server
 socket.on('user-joined', name =>{
-    append(`${name} joined the chat`, 'right');
-    audio1.play();
+    append(`${name} joined the chat`, 'left');
+    audio.play();
 })
 
-// If server sends a message, receive it
+
 socket.on('receive', data =>{
     append(`${data.name}: ${data.message}`, 'left');
 })
 
-// If a user leaves the chat, append the info to the container
+
 socket.on('left', name =>{
     append(`${name} left the chat`, 'right');
 })
 
-// If the form gets submitted, send server the message
+
 form.addEventListener('submit', (e) => {
     e.preventDefault();
     const message = messageInput.value;
@@ -55,3 +53,11 @@ form.addEventListener('submit', (e) => {
         messageInput.value = '';
     }
 });
+
+sendButton.addEventListener('click', ()=>{
+    $(".container").animate({ scrollTop: 20000000 }, "slow");
+
+            console.log("ha")
+          
+        })
+       
