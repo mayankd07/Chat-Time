@@ -11,7 +11,7 @@ app.get('/', function(req, res) {
     res.sendFile(path.join(__dirname, 'build', 'home.html'));
   });
   
-const port = 6000 ;
+const port = 6000 || 4000|| 3000|| 5676||2531||5361||4342 ;
   app.listen(port, () => {
     console.log("Server running at port : " + port);
   });
