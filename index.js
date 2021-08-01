@@ -2,6 +2,21 @@
 const io = require('socket.io')(8000);
 const users = {};
 
+const express = require("express");
+const app = express();
+const path = require('path');
+app.use(express.static(path.join(__dirname, 'build')));
+
+app.get('/', function(req, res) {
+    res.sendFile(path.join(__dirname, 'build', 'index.html'));
+  });
+  
+  
+  app.listen(port, () => {
+    console.log("Server running at port : " + port);
+  });
+  
+
 io.on('connection', socket =>{
     // If any new user joins, let other users connected to the server know!
     socket.on('new-user-joined', name =>{ 
@@ -22,6 +37,4 @@ io.on('connection', socket =>{
         socket.broadcast.emit('left', users[socket.id]);
         delete users[socket.id];
     });
-
-
 })
